@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Nigerian Delicacies | Afro Bistro - Authentic Nigerian Cuisine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fdf8f0;
+            color: #2d2a26;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1e8e1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e67e22;
+            border-radius: 10px;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+            background: rgba(255, 248, 240, 0.98);
+            backdrop-filter: blur(2px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #ffd9c4;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            color: #c0392b;
+        }
+        .logo span {
+            color: #e67e22;
+        }
+
+        /* Desktop Navigation */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #4a3b2f;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #e67e22;
+        }
+        .order-cta {
+            background: #e67e22;
+            color: white !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #e67e22;
+            z-index: 101;
+        }
+
+        /* Mobile Navigation Sidebar */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 70%;
+            max-width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            z-index: 200;
+            transition: left 0.3s ease;
+            padding: 2rem 1.5rem;
+            box-shadow: 2px 0 20px rgba(0,0,0,0.2);
+        }
+        .mobile-nav.open {
+            left: 0;
+        }
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .mobile-nav-header .logo {
+            font-size: 1.5rem;
+            color: white;
+        }
+        .close-menu {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .mobile-nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            transition: 0.2s;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .mobile-nav-links a:hover {
+            background: rgba(230,126,34,0.2);
+            color: #e67e22;
+        }
+        .mobile-order-cta {
+            background: #e67e22;
+            color: white !important;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        /* Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 150;
+            display: none;
+        }
+        .nav-overlay.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #fff3e8 0%, #ffe6d5 100%);
+            padding: 3rem 2rem;
+            border-radius: 0 0 3rem 3rem;
+            margin-bottom: 2rem;
+        }
+        .hero-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .hero-text {
+            flex: 1;
+        }
+        .hero-text h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #c0392b;
+            line-height: 1.2;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            margin: 1rem 0 1.8rem;
+            color: #5a4a3a;
+        }
+        .hero-btn {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hero-btn:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+        }
+        .hero-img {
+            flex: 1;
+            text-align: center;
+        }
+        .hero-img img {
+            max-width: 100%;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+        }
+
+        /* Category Sections */
+        .category {
+            padding: 3rem 2rem;
+        }
+        .category-title {
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            color: #c0392b;
+            margin-bottom: 2rem;
+            border-left: 5px solid #e67e22;
+            padding-left: 1rem;
+        }
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Dish Card */
+        .dish-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .dish-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .dish-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        .dish-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .dish-card:hover .dish-image img {
+            transform: scale(1.05);
+        }
+        .video-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .dish-info {
+            padding: 1.5rem;
+        }
+        .dish-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #2d2a26;
+        }
+        .dish-desc {
+            color: #7a6858;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #e67e22;
+            margin-bottom: 1rem;
+        }
+        .eating-guide {
+            background: #fff8f0;
+            padding: 0.8rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            border-left: 3px solid #e67e22;
+        }
+        .eating-guide p {
+            font-size: 0.8rem;
+            color: #5a4a3a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .watch-video {
+            background: none;
+            border: 1px solid #e67e22;
+            color: #e67e22;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.2s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .watch-video:hover {
+            background: #e67e22;
+            color: white;
+        }
+
+        /* Modal for Video */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .video-modal.active {
+            display: flex;
+        }
+        .modal-content {
+            max-width: 800px;
+            width: 90%;
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+        .modal-header {
+            padding: 1rem;
+            background: #2d2a26;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h3 {
+            margin: 0;
+        }
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .eating-instruction {
+            padding: 1rem;
+            background: #fef5ef;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Order Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 380px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+            z-index: 200;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .cart-sidebar.open {
+            transform: translateX(0);
+        }
+        .cart-header {
+            padding: 1.5rem;
+            background: #c0392b;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            border-bottom: 1px solid #f0e5de;
+        }
+        .cart-total {
+            padding: 1rem;
+            border-top: 2px solid #f0e5de;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .checkout-btn {
+            margin: 1rem;
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .cart-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #e67e22;
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 150;
+        }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #c0392b;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer {
+            background: #2b241f;
+            color: #d9c7b5;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .hero-text p {
+                font-size: 1rem;
+            }
+            .hero {
+                padding: 2rem 1rem;
+            }
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-btn {
+                margin: 0 auto;
+            }
+            .category {
+                padding: 2rem 1rem;
+            }
+            .category-title {
+                font-size: 1.6rem;
+            }
+            .dishes-grid {
+                grid-template-columns: 1fr;
+            }
+            .cart-sidebar {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none;
+            }
+            .nav-overlay {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Desktop Navigation -->
+<nav class="navbar">
+    <div class="logo">Afro <span>Bistro</span></div>
+    <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="#menu" class="active">Menu</a>
+        <a href="#contact">Contact</a>
+        <a href="#" id="viewCartBtn" class="order-cta"><i class="fas fa-shopping-cart"></i> Cart</a>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
+</nav>
+
+<!-- Mobile Navigation Sidebar -->
+<div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-header">
+        <div class="logo">Afro <span>Bistro</span></div>
+        <button class="close-menu" id="closeMenuBtn">&times;</button>
+    </div>
+    <div class="mobile-nav-links">
+        <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="#menu"><i class="fas fa-utensils"></i> Menu</a>
+        <a href="#contact"><i class="fas fa-phone"></i> Contact</a>
+        <a href="#" id="mobileViewCartBtn" class="mobile-order-cta"><i class="fas fa-shopping-cart"></i> Cart</a>
+    </div>
+</div>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Hero Section -->
+<section id="home">
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Discover Nigeria's<br>Finest Delicacies</h1>
+                <p>Experience authentic Nigerian cuisine — from rich soups to comforting swallows. Watch tutorials on how to eat each dish properly!</p>
+                <button class="hero-btn" id="heroExploreBtn"><i class="fas fa-utensils"></i> Explore Menu</button>
+            </div>
+            <div class="hero-img">
+                <img src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=600" alt="hero food">
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container" id="menu">
+    <!-- Swallows Category -->
+    <div class="category">
+        <h2 class="category-title"><i class="fas fa-utensil-spoon"></i> Nigerian Swallows</h2>
+        <div class="dishes-grid" id="swallows-grid"></div>
+    </div>
+
+    <!-- Soups & Stews Category -->
+    <div class="category">
+        <h2 class="category-title"><i class="fas fa-mug-hot"></i> Rich Soups & Stews</h2>
+        <div class="dishes-grid" id="soups-grid"></div>
+    </div>
+
+    <!-- Porridges & Rice Category -->
+    <div class="category">
+        <h2 class="category-title"><i class="fas fa-rice"></i> Porridges & Rice Dishes</h2>
+        <div class="dishes-grid" id="porridges-grid"></div>
+    </div>
+</div>
+
+<footer id="contact">
+    <p><i class="fas fa-map-marker-alt"></i> 123 Gourmet Street, Lagos, Nigeria</p>
+    <p><i class="fas fa-phone"></i> Call us: +234 801 234 5678 | <i class="far fa-clock"></i> Mon-Sun: 10am - 10pm</p>
+    <p style="margin-top: 1rem;">&copy; 2025 Afro Bistro — Taste of Nigeria</p>
+</footer>
+
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3><i class="fas fa-shopping-cart"></i> Your Order</h3>
+        <button class="close-modal" id="closeCartBtn" style="background:none; border:none; color:white; font-size:1.5rem;">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-total" id="cartTotal">Total: $0.00</div>
+    <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+</div>
+<button class="cart-toggle" id="cartToggleBtn">
+    <i class="fas fa-shopping-bag"></i>
+    <span class="cart-count" id="cartCount">0</span>
+</button>
+
+<!-- Video Modal -->
+<div id="videoModal" class="video-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modalTitle">How to Eat</h3>
+            <button class="close-modal" id="closeModalBtn">&times;</button>
+        </div>
+        <div class="video-container" id="videoContainer">
+            <iframe id="videoFrame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="eating-instruction" id="eatingInstruction"></div>
+    </div>
+</div>
+
+<script>
+    // Nigerian Food Data with Video Links
+    const menuData = {
+        swallows: [
+            {
+                id: "amala",
+                name: "Amala (Yam Flour)",
+                description: "Smooth, dark swallow made from dried yam flour. Best enjoyed with Ewedu and Gbegiri soups.",
+                price: 8.99,
+                image: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=400",
+                videoUrl: "https://www.youtube.com/embed/SgjVoT_i3F8",
+                eatingGuide: "🇳🇬 How to eat: Tear a small piece of Amala, flatten it with your fingers, scoop up soup, and swallow without chewing."
+            },
+            {
+                id: "fufu",
+                name: "Fufu (Cassava Swallow)",
+                description: "Fermented cassava swallow, soft and elastic. Perfect with Egusi or Ogbono soup.",
+                price: 7.99,
+                image: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=400",
+                videoUrl: "https://www.youtube.com/embed/Cd4L9bWjRCE",
+                eatingGuide: "🇳🇬 How to eat: Pinch a bite-sized portion, dip into soup, and swallow whole. Don't chew the fufu!"
+            },
+            {
+                id: "pounded_yam",
+                name: "Pounded Yam",
+                description: "Smooth, stretchy white swallow made from yam flour. Goes well with Egusi, Vegetable, or Bitterleaf soup.",
+                price: 9.99,
+                image: "https://images.pexels.com/photos/1574244/pexels-photo-1574244.jpeg?auto=compress&cs=tinysrgb&w=400",
+                videoUrl: "https://www.youtube.com/embed/d7k-rQLc9Uo",
+                eatingGuide: "🇳🇬 How to eat: Roll into a small ball, create a dent, fill with soup, and swallow. No chewing needed!"
+            },
+            {
+                id: "eba",
+                name: "Eba (Garri Swallow)",
+                description: "Firm, grainy swallow made from cassava flakes (garri). Pairs perfectly with Okra or Afang soup.",
+                price: 6.99,
+                image: "https://images.pexels.com/photos/1474718/pexels-photo-1474718.jpeg?auto=compress&cs=tinysrgb&w=400",
+                videoUrl: "https://www.youtube.com/embed/hQ3YjRm8uR0",
+                eatingGuide: "🇳🇬 How to eat: Mold with your fingers, use as a scoop for soup, and swallow. The grainy texture helps grip soup."
+            }
+        ],
+        soups: [
+            {
+                id: "egusi",
+                name: "Egusi Soup (Melon Seed)",
+                description: "Rich, nutty soup made from ground melon seeds with assorted meat, fish, and vegetables.",
+                price: 12.99,
+                image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400",
+                videoUrl: "https://www.youtube.com/embed/3LGgF7KAPvg",
+                eatingGuide: "🇳🇬 How to eat: Use with any swallow. Scoop soup with your swallow, making sure to get chunks of meat and egusi."
+            },
+            {
+                id: "ogbono",
+                name: "Ogbono Soup (Wild Mango)",
+                description: "Thick, draw soup made from ground ogbono seeds, known for its slippery texture.",
+                price: 13.99,
+                image: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=400",
+                videoUrl: "https://www.youtube.com/embed/aL8qVqn3Q3E",
+                eatingGuide: "🇳🇬 How to eat: The draw texture makes it perfect for dipping. Mix with your swallow and enjoy the slippery goodness."
+            },
+            {
+                id: "ewedu",
+                name: "Ewedu Soup (Jute Leaves)",
+                description: "Slippery green soup made from jute leaves, often paired with Amala and Gbegiri.",
+                price: 8.99,
+                image: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=400",
+                videoUrl: "https://www.youtube.com/embed/lG7Jt2mz1Dg",
+                eatingGuide: "🇳🇬 How to eat: Best with Amala. Dip your swallow into the smooth, slippery soup and swallow without chewing."
+            }
+        ],
+        porridges: [
+            {
+                id: "yam_porridge",
+                name: "Yam Porridge (Asaro)",
+                description: "Creamy yam porridge cooked with palm oil, fish, and vegetables. A hearty one-pot meal.",
+                price: 11.99,
+                image: "https://images.pexels.com/photos/1574244/pexels-photo-1574244.jpeg?auto=compress&cs=tinysrgb&w=400",
+                videoUrl: "https://www.youtube.com/embed/Xqf7zX3MKLI",
+                eatingGuide: "🇳🇬 How to eat: Eat with a spoon. Mix the yam chunks with the sauce and enjoy. Some people eat it with fried fish."
+            },
+            {
+                id: "beans_porridge",
+                name: "Beans Porridge (Ewa Oloyin)",
+                description: "Rich, savory honey beans porridge with palm oil, plantain, and spices.",
+                price: 9.99,
+                image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400",
+                videoUrl: "https://www.youtube.com/embed/vJ03Pc0lMFI",
+                eatingGuide: "🇳🇬 How to eat: Serve with bread or plantain. Use a spoon to scoop the creamy beans. Some eat with garri on the side."
+            },
+            {
+                id: "jollof_rice",
+                name: "Nigerian Jollof Rice",
+                description: "Iconic spicy rice dish cooked in tomato sauce, onions, and assorted spices. Party favorite!",
+                price: 10.99,
+                image: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=400",
+                videoUrl: "https://www.youtube.com/embed/0Bp6rKId4Zw",
+                eatingGuide: "🇳🇬 How to eat: Eat with a spoon or fork. Best enjoyed with fried plantains (dodo), chicken, or coleslaw."
+            },
+            {
+                id: "fried_rice",
+                name: "Nigerian Fried Rice",
+                description: "Colorful rice stir-fried with vegetables, liver, and spices. Perfect for celebrations.",
+                price: 11.99,
+                image: "https://images.pexels.com/photos/1474718/pexels-photo-1474718.jpeg?auto=compress&cs=tinysrgb&w=400",
+                videoUrl: "https://www.youtube.com/embed/ZNq8nJX_3fU",
+                eatingGuide: "🇳🇬 How to eat: Serve with fried chicken, plantain, or moi-moi. Use a fork or spoon."
+            }
+        ]
+    };
+
+    let cart = [];
+    let currentVideoModal = null;
+
+    function createDishCard(dish, category) {
+        const card = document.createElement('div');
+        card.className = 'dish-card';
+        card.innerHTML = `
+            <div class="dish-image">
+                <img src="${dish.image}" alt="${dish.name}" loading="lazy">
+                <div class="video-badge">
+                    <i class="fas fa-play"></i> Watch how to eat
+                </div>
+            </div>
+            <div class="dish-info">
+                <h3>${dish.name}</h3>
+                <p class="dish-desc">${dish.description}</p>
+                <div class="price">₦${(dish.price * 600).toLocaleString()} | $${dish.price}</div>
+                <div class="eating-guide">
+                    <p><i class="fas fa-lightbulb"></i> <strong>Eating Guide:</strong> ${dish.eatingGuide}</p>
+                </div>
+                <button class="watch-video" data-video="${dish.videoUrl}" data-name="${dish.name}" data-guide="${dish.eatingGuide}">
+                    <i class="fas fa-play-circle"></i> Watch Tutorial
+                </button>
+                <button class="add-to-cart" data-id="${dish.id}" data-name="${dish.name}" data-price="${dish.price}" style="margin-top: 0.5rem; background: #e67e22; color: white; border: none; padding: 0.5rem 1rem; border-radius: 2rem; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fas fa-shopping-cart"></i> Add to Order
+                </button>
+            </div>
+        `;
+        
+        const videoBtn = card.querySelector('.watch-video');
+        videoBtn.addEventListener('click', () => {
+            const videoUrl = videoBtn.dataset.video;
+            const name = videoBtn.dataset.name;
+            const guide = videoBtn.dataset.guide;
+            openVideoModal(videoUrl, name, guide);
+        });
+        
+        const addBtn = card.querySelector('.add-to-cart');
+        addBtn.addEventListener('click', () => {
+            addToCart({
+                id: dish.id,
+                name: dish.name,
+                price: dish.price
+            });
+        });
+        
+        return card;
+    }
+
+    function renderMenu() {
+        const swallowsGrid = document.getElementById('swallows-grid');
+        const soupsGrid = document.getElementById('soups-grid');
+        const porridgesGrid = document.getElementById('porridges-grid');
+        
+        menuData.swallows.forEach(dish => {
+            swallowsGrid.appendChild(createDishCard(dish, 'swallow'));
+        });
+        menuData.soups.forEach(dish => {
+            soupsGrid.appendChild(createDishCard(dish, 'soup'));
+        });
+        menuData.porridges.forEach(dish => {
+            porridgesGrid.appendChild(createDishCard(dish, 'porridge'));
+        });
+    }
+
+    function openVideoModal(videoUrl, name, guide) {
+        const modal = document.getElementById('videoModal');
+        const videoFrame = document.getElementById('videoFrame');
+        const modalTitle = document.getElementById('modalTitle');
+        const eatingInstruction = document.getElementById('eatingInstruction');
+        
+        let embedUrl = videoUrl;
+        if (videoUrl.includes('youtube.com/watch?v=')) {
+            const videoId = videoUrl.split('v=')[1].split('&')[0];
+            embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        } else if (videoUrl.includes('youtu.be/')) {
+            const videoId = videoUrl.split('youtu.be/')[1].split('?')[0];
+            embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        }
+        
+        videoFrame.src = embedUrl;
+        modalTitle.textContent = `How to Eat: ${name}`;
+        eatingInstruction.innerHTML = `<i class="fas fa-utensils"></i> ${guide}`;
+        modal.classList.add('active');
+        currentVideoModal = modal;
+    }
+
+    function closeVideoModal() {
+        if (currentVideoModal) {
+            const videoFrame = document.getElementById('videoFrame');
+            videoFrame.src = '';
+            currentVideoModal.classList.remove('active');
+            currentVideoModal = null;
+        }
+    }
+
+    function addToCart(item) {
+        const existing = cart.find(c => c.id === item.id);
+        if (existing) {
+            existing.quantity++;
+        } else {
+            cart.push({ ...item, quantity: 1 });
+        }
+        updateCartUI();
+        showToast(`${item.name} added to cart!`);
+    }
+
+    function updateCartUI() {
+        const cartItemsDiv = document.getElementById('cartItems');
+        const cartTotalDiv = document.getElementById('cartTotal');
+        const cartCountSpan = document.getElementById('cartCount');
+        
+        if (cart.length === 0) {
+            cartItemsDiv.innerHTML = '<div style="text-align: center; padding: 2rem; color: #b9a69a;">Your cart is empty. Add delicious Nigerian dishes!</div>';
+            cartTotalDiv.innerHTML = 'Total: $0.00';
+            cartCountSpan.textContent = '0';
+            return;
+        }
+        
+        let total = 0;
+        cartItemsDiv.innerHTML = cart.map(item => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            return `
+                <div class="cart-item">
+                    <div>
+                        <strong>${item.name}</strong><br>
+                        <small>$${item.price} x ${item.quantity}</small>
+                    </div>
+                    <div>
+                        <span style="font-weight: bold;">$${itemTotal.toFixed(2)}</span>
+                        <button class="remove-item" data-id="${item.id}" style="background: #e74c3c; border: none; color: white; padding: 0.2rem 0.5rem; border-radius: 50%; margin-left: 0.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        cartTotalDiv.innerHTML = `Total: $${total.toFixed(2)}`;
+        cartCountSpan.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+        
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = btn.getAttribute('data-id');
+                cart = cart.filter(item => item.id !== id);
+                updateCartUI();
+                showToast('Item removed from cart');
+            });
+        });
+    }
+
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            z-index: 300;
+            animation: fadeIn 0.3s ease;
+            font-size: 0.85rem;
+        `;
+        toast.innerHTML = `✓ ${message}`;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 2000);
+    }
+
+    // Mobile Navigation Functions
+    const mobileNav = document.getElementById('mobileNav');
+    const navOverlay = document.getElementById('navOverlay');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+    function openMobileNav() {
+        mobileNav.classList.add('open');
+        navOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileNav() {
+        mobileNav.classList.remove('open');
+        navOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    mobileMenuBtn?.addEventListener('click', openMobileNav);
+    closeMenuBtn?.addEventListener('click', closeMobileNav);
+    navOverlay?.addEventListener('click', closeMobileNav);
+
+    // Cart sidebar toggle
+    const cartSidebar = document.getElementById('cartSidebar');
+    const cartToggleBtn = document.getElementById('cartToggleBtn');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+    const viewCartBtn = document.getElementById('viewCartBtn');
+    const mobileViewCartBtn = document.getElementById('mobileViewCartBtn');
+    
+    function openCart() {
+        cartSidebar.classList.add('open');
+        closeMobileNav();
+    }
+    
+    function closeCart() {
+        cartSidebar.classList.remove('open');
+    }
+    
+    cartToggleBtn.addEventListener('click', openCart);
+    closeCartBtn.addEventListener('click', closeCart);
+    viewCartBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openCart();
+    });
+    mobileViewCartBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        openCart();
+    });
+    
+    // Checkout
+    document.getElementById('checkoutBtn').addEventListener('click', () => {
+        if (cart.length === 0) {
+            showToast('Your cart is empty. Add some dishes first!');
+            return;
+        }
+        alert('Order placed successfully! We will contact you shortly for delivery.\n\nItems:\n' + cart.map(i => `${i.name} x${i.quantity} - $${(i.price * i.quantity).toFixed(2)}`).join('\n'));
+        cart = [];
+        updateCartUI();
+        closeCart();
+    });
+    
+    // Modal close
+    document.getElementById('closeModalBtn').addEventListener('click', closeVideoModal);
+    window.addEventListener('click', (e) => {
+        const modal = document.getElementById('videoModal');
+        if (e.target === modal) closeVideoModal();
+    });
+    
+    // Hero explore button
+    document.getElementById('heroExploreBtn')?.addEventListener('click', () => {
+        document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+    });
+    
+    // Close mobile nav when clicking a link
+    document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (link.getAttribute('href') === '#menu') {
+                setTimeout(() => {
+                    document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+                }, 300);
+            }
+            closeMobileNav();
+        });
+    });
+    
+    renderMenu();
+    updateCartUI();
+</script>
+</body>
+</html>

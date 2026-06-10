@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Flavoursome Bistro | Gourmet Dining & Online Order</title>
+    <title>Afro Bistro | Gourmet Dining & Online Order</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -22,7 +22,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Custom scroll */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -34,7 +33,6 @@
             border-radius: 10px;
         }
 
-        /* Typography */
         h1, h2, h3, .logo {
             font-family: 'Playfair Display', serif;
         }
@@ -45,7 +43,7 @@
             padding: 0 2rem;
         }
 
-        /* Header & Nav */
+        /* Navbar Styles */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -57,7 +55,6 @@
             top: 0;
             z-index: 100;
             border-bottom: 1px solid #ffd9c4;
-            flex-wrap: wrap;
         }
         .logo {
             font-size: 1.8rem;
@@ -69,6 +66,8 @@
             color: #e67e22;
             font-weight: 800;
         }
+
+        /* Desktop Navigation */
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -94,6 +93,95 @@
         .order-cta:hover {
             background: #c0392b;
             transform: scale(1.02);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #e67e22;
+            z-index: 101;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 70%;
+            max-width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            z-index: 200;
+            transition: left 0.3s ease;
+            padding: 2rem 1.5rem;
+            box-shadow: 2px 0 20px rgba(0,0,0,0.2);
+        }
+        .mobile-nav.open {
+            left: 0;
+        }
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .mobile-nav-header .logo {
+            font-size: 1.5rem;
+            color: white;
+        }
+        .close-menu {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .mobile-nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            transition: 0.2s;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .mobile-nav-links a:hover {
+            background: rgba(230,126,34,0.2);
+            color: #e67e22;
+        }
+        .mobile-order-cta {
+            background: #e67e22;
+            color: white !important;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        /* Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 150;
+            display: none;
+        }
+        .nav-overlay.active {
+            display: block;
         }
 
         /* Hero Section */
@@ -154,7 +242,6 @@
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
         }
 
-        /* Section Header */
         .section-header {
             text-align: center;
             margin: 3rem 0 2rem;
@@ -169,7 +256,6 @@
             font-size: 1.1rem;
         }
 
-        /* Menu Grid */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -247,7 +333,6 @@
             transform: scale(0.98);
         }
 
-        /* Order form section (sticky cart style) */
         .order-section {
             background: #fff8f2;
             border-radius: 2rem;
@@ -322,6 +407,10 @@
         .submit-order:hover {
             background: #1f5c36;
         }
+        .submit-order:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
         .toast-msg {
             position: fixed;
             bottom: 2rem;
@@ -343,13 +432,151 @@
             margin-top: 3rem;
             border-radius: 2rem 2rem 0 0;
         }
-        @media (max-width: 780px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
+        
+        .order-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .order-modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 2rem;
+            padding: 2rem;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0e5de;
+        }
+        .modal-header h3 {
+            color: #c0392b;
+            font-size: 1.5rem;
+        }
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #999;
+            transition: 0.2s;
+        }
+        .close-modal:hover {
+            color: #c0392b;
+        }
+        .modal-body {
+            margin-bottom: 1.5rem;
+        }
+        .order-summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0e5de;
+        }
+        .modal-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            text-align: right;
+            color: #e67e22;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        .modal-actions button {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 2rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .confirm-order {
+            background: #2c7a47;
+            color: white;
+        }
+        .confirm-order:hover {
+            background: #1f5c36;
+        }
+        .cancel-order {
+            background: #e74c3c;
+            color: white;
+        }
+        .cancel-order:hover {
+            background: #c0392b;
+        }
+
+        .menu-loader {
+            text-align: center;
+            padding: 3rem;
+            color: #e67e22;
+        }
+        .loader-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f0e5de;
+            border-radius: 50%;
+            border-top-color: #e67e22;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid white;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.6s linear infinite;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
             }
             .hero-text h1 {
                 font-size: 2.2rem;
+            }
+            .hero-text p {
+                font-size: 1rem;
+            }
+            .hero {
+                padding: 2rem 1rem;
             }
             .container {
                 padding: 0 1rem;
@@ -357,34 +584,61 @@
             .section-header h2 {
                 font-size: 1.8rem;
             }
+            .order-flex {
+                flex-direction: column;
+            }
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-btn {
+                margin: 0 auto;
+            }
         }
-        i.fa, i.far, i.fas {
-            margin-right: 5px;
-        }
-        .badge {
-            background: #e67e22;
-            color: white;
-            border-radius: 20px;
-            padding: 2px 10px;
-            font-size: 0.7rem;
-            margin-left: 8px;
+
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none;
+            }
+            .nav-overlay {
+                display: none !important;
+            }
         }
     </style>
 </head>
 <body>
 
+<!-- Desktop Navigation -->
 <nav class="navbar">
-    <div class="logo">Flavoursome <span>Bistro</span></div>
+    <div class="logo">Afro <span>Bistro</span></div>
     <div class="nav-links">
         <a href="#home" class="active">Home</a>
-        <a href="#menu">Menu</a>
+        <a href="./menu.html">Menu</a>
         <a href="#order-now">Order Online</a>
         <a href="#contact">Contact</a>
         <a href="#order-now" class="order-cta"><i class="fas fa-shopping-bag"></i> Order Now</a>
     </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
 </nav>
 
-<!-- Hero Section -->
+<!-- Mobile Navigation Sidebar -->
+<div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-header">
+        <div class="logo">Afro <span>Bistro</span></div>
+        <button class="close-menu" id="closeMenuBtn">&times;</button>
+    </div>
+    <div class="mobile-nav-links">
+        <a href="#home"><i class="fas fa-home"></i> Home</a>
+        <a href="./menu.html"><i class="fas fa-utensils"></i> Menu</a>
+        <a href="#order-now"><i class="fas fa-shopping-cart"></i> Order Online</a>
+        <a href="#contact"><i class="fas fa-phone"></i> Contact</a>
+        <a href="#order-now" class="mobile-order-cta"><i class="fas fa-shopping-bag"></i> Order Now</a>
+    </div>
+</div>
+<div class="nav-overlay" id="navOverlay"></div>
+
 <section id="home">
     <div class="hero">
         <div class="hero-content">
@@ -401,18 +655,19 @@
 </section>
 
 <div class="container">
-    <!-- Menu Section -->
     <div id="menu">
         <div class="section-header">
             <h2><i class="fas fa-leaf"></i> Our Signature Dishes</h2>
             <p>Handpicked recipes, bold taste — made just for you</p>
         </div>
         <div id="menu-container" class="menu-grid">
-            <!-- dynamic menu will be injected here -->
+            <div class="menu-loader">
+                <div class="loader-spinner"></div>
+                <p>Loading delicious menu...</p>
+            </div>
         </div>
     </div>
 
-    <!-- Order Section with form -->
     <div id="order-now">
         <div class="order-section">
             <div class="section-header" style="margin:0 0 1rem 0">
@@ -435,7 +690,7 @@
                         <input type="tel" id="phone" placeholder="+1 234 567 8900" required>
                         <label><i class="fas fa-comment-dots"></i> Special instructions</label>
                         <textarea id="special-instructions" rows="2" placeholder="Any allergies, extra sauce, etc..."></textarea>
-                        <button type="submit" class="submit-order"><i class="fas fa-check-circle"></i> Confirm Order</button>
+                        <button type="button" class="submit-order" id="reviewOrderBtn"><i class="fas fa-eye"></i> Review Order</button>
                     </form>
                 </div>
             </div>
@@ -446,45 +701,69 @@
 <footer id="contact">
     <p><i class="fas fa-map-marker-alt"></i> 123 Gourmet Street, Foodie District</p>
     <p><i class="fas fa-phone"></i> Call us: (555) 123-4567 | <i class="far fa-clock"></i> Mon-Sun: 11am - 10pm</p>
-    <p style="margin-top: 1rem;">&copy; 2025 Flavoursome Bistro — Taste the tradition</p>
+    <p style="margin-top: 1rem;">&copy; 2025 Afro Bistro — Taste the tradition</p>
 </footer>
 
 <div id="toastMessage" class="toast-msg">✓ Added to order</div>
 
-<!-- Firebase Modules + App Logic with Mock Data (no external firebase needed for demo but using local storage simulation for orders) 
-     Since we must embed fully working ordering system without actual firebase keys, we'll use localStorage to simulate admin tracking & orders.
-     But to strictly match the guide, we emulate order storage, admin page concept not needed here but order tracking via console & local.
-     All ordering logic works, phone contact required, admin page can be built but this homepage is fully functional standalone with UI/UX.
-     We'll store orders in localStorage so that an "admin" mock can retrieve them. The requirement: Admin page tracks orders. We will add a hidden admin panel link or data view? 
-     For completeness: In this demo, we will create a simple admin view accessible via /admin.html concept but for now, we ensure order form includes phone and orders saved.
-     But since the user wants "build a website for restaurant ... order form with phone contact, admin page that track order" — we will build homepage fully, and orders are stored in browser's localStorage. However to simulate backend with firebase later replace, we use localStorage + show a simple admin dashboard separate? I'll implement a minimalist admin section hidden but accessible via /admin path? Actually I can embed an "Admin Orders Summary" modal? Better to provide admin tracking simply by showing a floating admin badge? Instead, to be robust: I will create a separate admin section inside this file? But admin page should be separate but we can add a small "Staff View" button? 
-    The requirement: "admin page that track order" – So I'll implement a second HTML section? Not needed for single file but I'll include a "Admin Dashboard (Demo)" button in footer that toggles order list? But that would be clean. Because the guide expects admin page. Let's add a quick "Admin Panel" modal that displays stored orders (localStorage). Meets tracking requirement fully, plus phone number visible.
--->
+<!-- Order Confirmation Modal -->
+<div id="orderModal" class="order-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-check-circle"></i> Confirm Your Order</h3>
+            <button class="close-modal" id="closeModalBtn">&times;</button>
+        </div>
+        <div class="modal-body" id="modalOrderSummary">
+            <!-- Order summary will be injected here -->
+        </div>
+        <div class="modal-actions">
+            <button class="cancel-order" id="cancelOrderBtn">Cancel</button>
+            <button class="confirm-order" id="confirmOrderBtn">Place Order</button>
+        </div>
+    </div>
+</div>
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDIa3Gnf9MVDsWtqvb2ruzplWifyXRnif0",
-  authDomain: "afri-bistro.firebaseapp.com",
-  projectId: "afri-bistro",
-  storageBucket: "afri-bistro.firebasestorage.app",
-  messagingSenderId: "54813556679",
-  appId: "1:54813556679:web:0585f4d73d34da265ba3e2",
-  measurementId: "G-9PM4WENVHF"
-};
+<!-- Firebase SDKs -->
+<script type="importmap">
+    {
+        "imports": {
+            "firebase/app": "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js",
+            "firebase/firestore": "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js",
+            "firebase/analytics": "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js"
+        }
+    }
+</script>
 
 <script type="module">
-    // ---------- MENU DATA (with food pictures) ----------
-    const menuData = [
-        { id: "m1", name: "Truffle Mushroom Risotto", description: "Creamy arborio rice, wild mushrooms, parmesan & truffle oil", price: 18.99, image: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { id: "m2", name: "Grilled Herb Salmon", description: "Atlantic salmon, lemon herb butter, roasted asparagus", price: 24.50, image: "https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { id: "m3", name: "Spicy Peri-Peri Chicken", description: "Grilled chicken, peri-peri glaze, side of chimichurri", price: 16.90, image: "https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { id: "m4", name: "Classic Margherita Pizza", description: "San Marzano tomatoes, mozzarella, fresh basil, EVOO", price: 14.75, image: "https://images.pexels.com/photos/803290/pexels-photo-803290.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { id: "m5", name: "Mediterranean Bowl", description: "Quinoa, falafel, hummus, cucumber, tzatziki", price: 13.25, image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { id: "m6", name: "Double Chocolate Lava Cake", description: "Molten dark chocolate center, vanilla ice cream", price: 8.99, image: "https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?auto=compress&cs=tinysrgb&w=400" }
+    import { initializeApp } from "firebase/app";
+    import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "firebase/firestore";
+    import { getAnalytics } from "firebase/analytics";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDIa3Gnf9MVDsWtqvb2ruzplWifyXRnif0",
+        authDomain: "afri-bistro.firebaseapp.com",
+        projectId: "afri-bistro",
+        storageBucket: "afri-bistro.firebasestorage.app",
+        messagingSenderId: "54813556679",
+        appId: "1:54813556679:web:0585f4d73d34da265ba3e2",
+        measurementId: "G-9PM4WENVHF"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const analytics = getAnalytics(app);
+
+    const staticMenuData = [
+        { id: "static_m1", name: "Truffle Mushroom Risotto", description: "Creamy arborio rice, wild mushrooms, parmesan & truffle oil", price: 18.99, image: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { id: "static_m2", name: "Grilled Herb Salmon", description: "Atlantic salmon, lemon herb butter, roasted asparagus", price: 24.50, image: "https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { id: "static_m3", name: "Spicy Peri-Peri Chicken", description: "Grilled chicken, peri-peri glaze, side of chimichurri", price: 16.90, image: "https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { id: "static_m4", name: "Classic Margherita Pizza", description: "San Marzano tomatoes, mozzarella, fresh basil, EVOO", price: 14.75, image: "https://images.pexels.com/photos/803290/pexels-photo-803290.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { id: "static_m5", name: "Mediterranean Bowl", description: "Quinoa, falafel, hummus, cucumber, tzatziki", price: 13.25, image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400" },
+        { id: "static_m6", name: "Double Chocolate Lava Cake", description: "Molten dark chocolate center, vanilla ice cream", price: 8.99, image: "https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?auto=compress&cs=tinysrgb&w=400" }
     ];
 
-    let currentCart = []; // { id, name, price, quantity }
+    let currentCart = [];
 
-    // Helper: save cart to localStorage
     function saveCart() {
         localStorage.setItem('restaurant_cart', JSON.stringify(currentCart));
     }
@@ -544,7 +823,7 @@ const firebaseConfig = {
             total += itemTotal;
             cartHtml += `
                 <div class="cart-item">
-                    <div><strong>${item.name}</strong> <span style="font-size:0.8rem;">x${item.quantity}</span></div>
+                    <div><strong>${escapeHtml(item.name)}</strong> <span style="font-size:0.8rem;">x${item.quantity}</span></div>
                     <div>$${itemTotal.toFixed(2)} 
                         <button class="remove-item" data-id="${item.id}" style="background:none; border:none; color:#c0392b; margin-left:8px; cursor:pointer;"><i class="fas fa-trash-alt"></i></button>
                         <button class="inc-qty" data-id="${item.id}" style="background:#ffe6d5; border:none; border-radius:20px; padding:2px 8px; margin-left:5px;">+</button>
@@ -556,7 +835,6 @@ const firebaseConfig = {
         container.innerHTML = cartHtml;
         totalContainer.innerHTML = `Total: $${total.toFixed(2)}`;
 
-        // attach event listeners
         document.querySelectorAll('.remove-item').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const id = btn.getAttribute('data-id');
@@ -579,39 +857,79 @@ const firebaseConfig = {
         });
     }
 
-    function renderMenu() {
+    function createMenuItemElement(item, itemId) {
+        const card = document.createElement('div');
+        card.className = 'menu-card';
+        card.innerHTML = `
+            <div class="card-img">
+                <img src="${item.image || 'https://via.placeholder.com/400x220?text=Delicious+Dish'}" alt="${escapeHtml(item.name)}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x220?text=Food+Image'">
+            </div>
+            <div class="card-info">
+                <h3>${escapeHtml(item.name)}</h3>
+                <p class="desc">${escapeHtml(item.description) || 'A delicious specialty from our kitchen'}</p>
+                <div class="price-order">
+                    <span class="price">$${item.price.toFixed(2)}</span>
+                    <button class="order-btn" data-id="${itemId}" data-name="${escapeHtml(item.name)}" data-price="${item.price}"><i class="fas fa-shopping-bag"></i> Order Now</button>
+                </div>
+            </div>
+        `;
+        const orderBtn = card.querySelector('.order-btn');
+        orderBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            addToCart({ id: itemId, name: item.name, price: item.price });
+        });
+        return card;
+    }
+
+    async function loadFirebaseMenu() {
+        try {
+            const querySnapshot = await getDocs(collection(db, "menu"));
+            const items = [];
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                items.push({
+                    id: doc.id,
+                    name: data.name || "Untitled Dish",
+                    description: data.description || "",
+                    price: data.price || 0,
+                    image: data.image || ""
+                });
+            });
+            return items;
+        } catch (error) {
+            console.error("Error loading menu from Firebase:", error);
+            return [];
+        }
+    }
+
+    async function renderMenu() {
         const menuContainer = document.getElementById('menu-container');
         if(!menuContainer) return;
+        
+        menuContainer.innerHTML = '<div class="menu-loader"><div class="loader-spinner"></div><p>Loading fresh menu...</p></div>';
+        
+        const firebaseItems = await loadFirebaseMenu();
+        
         menuContainer.innerHTML = '';
-        menuData.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'menu-card';
-            card.innerHTML = `
-                <div class="card-img">
-                    <img src="${item.image}" alt="${item.name}" loading="lazy">
-                </div>
-                <div class="card-info">
-                    <h3>${item.name}</h3>
-                    <p class="desc">${item.description}</p>
-                    <div class="price-order">
-                        <span class="price">$${item.price.toFixed(2)}</span>
-                        <button class="order-btn" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}"><i class="fas fa-shopping-bag"></i> Order Now</button>
-                    </div>
-                </div>
-            `;
+        
+        staticMenuData.forEach(item => {
+            const card = createMenuItemElement(item, item.id);
             menuContainer.appendChild(card);
         });
-        // attach order now button events
-        document.querySelectorAll('.order-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const id = btn.getAttribute('data-id');
-                const name = btn.getAttribute('data-name');
-                const price = parseFloat(btn.getAttribute('data-price'));
-                const menuItem = menuData.find(m => m.id === id);
-                if(menuItem) addToCart({ id: menuItem.id, name: menuItem.name, price: menuItem.price });
-                else addToCart({ id, name, price });
+        
+        if (firebaseItems.length > 0) {
+            firebaseItems.forEach(item => {
+                const card = createMenuItemElement(item, item.id);
+                menuContainer.appendChild(card);
             });
-        });
+        }
+        
+        if (firebaseItems.length === 0) {
+            const infoNote = document.createElement('div');
+            infoNote.style.cssText = 'grid-column: 1/-1; text-align: center; padding: 1rem; color: #b9a69a; font-size: 0.9rem;';
+            infoNote.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> No extra dishes uploaded yet. Check back soon for specials!';
+            menuContainer.appendChild(infoNote);
+        }
     }
 
     function showToast(msg) {
@@ -623,132 +941,147 @@ const firebaseConfig = {
         }, 2000);
     }
 
-    // ORDER SUBMISSION (store orders in localStorage for admin tracking)
-    function getOrdersFromStorage() {
-        const orders = localStorage.getItem('restaurant_orders');
-        return orders ? JSON.parse(orders) : [];
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str).replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
     }
 
-    function saveOrderToStorage(order) {
-        const orders = getOrdersFromStorage();
-        orders.push(order);
-        localStorage.setItem('restaurant_orders', JSON.stringify(orders));
-    }
-
-    document.getElementById('order-form')?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if(currentCart.length === 0) {
-            alert('Please add at least one item to your order.');
-            return;
-        }
+    function showModal() {
+        const modal = document.getElementById('orderModal');
         const customerName = document.getElementById('customer-name').value.trim();
         const phone = document.getElementById('phone').value.trim();
+        
+        if(currentCart.length === 0) {
+            showToast('Please add items to your cart first!');
+            return;
+        }
         if(!customerName || !phone) {
-            alert('Please provide full name and phone number.');
+            showToast('Please enter your name and phone number!');
             return;
         }
-        const special = document.getElementById('special-instructions').value;
-        const totalPrice = currentCart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
-        const newOrder = {
-            id: Date.now().toString(),
-            customerName,
-            phone,
-            specialInstructions: special,
-            items: currentCart.map(item => ({ name: item.name, quantity: item.quantity, price: item.price })),
-            total: totalPrice,
-            status: 'pending',
-            timestamp: new Date().toLocaleString(),
-            createdAt: new Date().toISOString()
-        };
-        saveOrderToStorage(newOrder);
-        alert(`✅ Order placed successfully! Total: $${totalPrice.toFixed(2)}. We'll contact you at ${phone}.`);
-        // reset cart
-        currentCart = [];
-        saveCart();
-        renderCartUI();
-        document.getElementById('order-form').reset();
-        // Also dispatch event for admin if needed
-    });
-
-    // ------------- ADMIN TRACKING PAGE (lightweight integrated but separate view) -------------
-    // Create an "Admin Dashboard" button that shows modal with orders and updates status (track orders)
-    const adminPanelHTML = `
-    <div id="adminModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
-        <div style="background:#fff; max-width:700px; width:90%; max-height:80%; border-radius:28px; overflow-y:auto; padding:1.5rem;">
-            <div style="display:flex; justify-content:space-between;">
-                <h2><i class="fas fa-chalkboard-user"></i> Admin Order Tracker</h2>
-                <button id="closeAdminBtn" style="background:#c0392b; border:none; color:white; padding:5px 12px; border-radius:30px;">Close</button>
-            </div>
-            <div id="adminOrdersList" style="margin-top:1rem;">Loading orders...</div>
-            <p style="font-size:0.7rem; margin-top:1rem;">* Orders stored locally. Update status to mark completed.</p>
-        </div>
-    </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', adminPanelHTML);
-    // add admin trigger button in footer
-    const adminTrigger = document.createElement('button');
-    adminTrigger.innerHTML = '<i class="fas fa-lock"></i> Admin Panel (Track Orders)';
-    adminTrigger.style.cssText = 'position:fixed; bottom:20px; left:20px; background:#2d2a26; color:#ffd9c4; border:none; padding:8px 18px; border-radius:40px; z-index:99; cursor:pointer; font-weight:bold; font-size:0.8rem;';
-    document.body.appendChild(adminTrigger);
-    
-    function renderAdminOrders() {
-        const orders = getOrdersFromStorage();
-        const container = document.getElementById('adminOrdersList');
-        if(!container) return;
-        if(orders.length === 0) {
-            container.innerHTML = '<p>No orders placed yet.</p>';
-            return;
-        }
-        let html = '';
-        orders.forEach(order => {
-            html += `
-                <div style="border-left:4px solid #e67e22; margin-bottom:1rem; padding:0.8rem; background:#fef5ef; border-radius:16px;">
-                    <p><strong>Order #${order.id.slice(-6)}</strong> | ${order.timestamp}</p>
-                    <p><i class="fas fa-user"></i> ${order.customerName} | <i class="fas fa-phone"></i> ${order.phone}</p>
-                    <p><strong>Items:</strong> ${order.items.map(i => `${i.name} (x${i.quantity})`).join(', ')}</p>
-                    <p><strong>Total:</strong> $${order.total.toFixed(2)} | Instructions: ${order.specialInstructions || 'None'}</p>
-                    <p>Status: <span class="status-badge status-${order.status}" style="background:${order.status === 'pending' ? '#f39c12' : '#2ecc71'};">${order.status.toUpperCase()}</span></p>
-                    <button class="update-order-status" data-id="${order.id}" style="background:#3498db; border:none; padding:4px 12px; border-radius:20px; color:white; margin-top:6px;">Mark as ${order.status === 'pending' ? 'Completed' : 'Pending'}</button>
+        
+        const total = currentCart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
+        const summaryHtml = `
+            ${currentCart.map(item => `
+                <div class="order-summary-item">
+                    <span>${escapeHtml(item.name)} x${item.quantity}</span>
+                    <span>$${(item.price * item.quantity).toFixed(2)}</span>
                 </div>
-            `;
-        });
-        container.innerHTML = html;
-        document.querySelectorAll('.update-order-status').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const orderId = btn.getAttribute('data-id');
-                let ordersArr = getOrdersFromStorage();
-                const orderIdx = ordersArr.findIndex(o => o.id === orderId);
-                if(orderIdx !== -1) {
-                    ordersArr[orderIdx].status = ordersArr[orderIdx].status === 'pending' ? 'completed' : 'pending';
-                    localStorage.setItem('restaurant_orders', JSON.stringify(ordersArr));
-                    renderAdminOrders();
-                }
-            });
-        });
+            `).join('')}
+            <div class="modal-total">
+                <strong>Total: $${total.toFixed(2)}</strong>
+            </div>
+            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #f0e5de;">
+                <p><i class="fas fa-user"></i> <strong>${escapeHtml(customerName)}</strong></p>
+                <p><i class="fas fa-phone"></i> ${escapeHtml(phone)}</p>
+            </div>
+        `;
+        document.getElementById('modalOrderSummary').innerHTML = summaryHtml;
+        modal.classList.add('active');
     }
-    
-    adminTrigger.addEventListener('click', () => {
-        const modal = document.getElementById('adminModal');
-        modal.style.display = 'flex';
-        renderAdminOrders();
-    });
-    document.getElementById('closeAdminBtn')?.addEventListener('click', () => {
-        document.getElementById('adminModal').style.display = 'none';
-    });
-    // Optional click outside close
-    window.addEventListener('click', (e) => {
-        const modal = document.getElementById('adminModal');
-        if(e.target === modal) modal.style.display = 'none';
+
+    async function submitOrderToFirebase() {
+        const customerName = document.getElementById('customer-name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const specialInstructions = document.getElementById('special-instructions').value;
+        const totalPrice = currentCart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
+        
+        const orderData = {
+            customerName: customerName,
+            phone: phone,
+            specialInstructions: specialInstructions || '',
+            items: currentCart.map(item => ({
+                id: item.id,
+                name: item.name,
+                quantity: item.quantity,
+                price: item.price,
+                subtotal: item.price * item.quantity
+            })),
+            totalAmount: totalPrice,
+            status: 'pending',
+            orderDate: serverTimestamp(),
+            timestamp: new Date().toISOString()
+        };
+        
+        const confirmBtn = document.getElementById('confirmOrderBtn');
+        const originalText = confirmBtn.innerHTML;
+        confirmBtn.innerHTML = '<span class="loading-spinner"></span> Placing Order...';
+        confirmBtn.disabled = true;
+        
+        try {
+            const docRef = await addDoc(collection(db, "orders"), orderData);
+            showToast(`✅ Order placed successfully! Order #${docRef.id.slice(-6)}`);
+            
+            currentCart = [];
+            saveCart();
+            renderCartUI();
+            document.getElementById('order-form').reset();
+            document.getElementById('orderModal').classList.remove('active');
+            
+        } catch (error) {
+            console.error("Error adding order: ", error);
+            showToast('❌ Failed to place order. Please try again.');
+        } finally {
+            confirmBtn.innerHTML = originalText;
+            confirmBtn.disabled = false;
+        }
+    }
+
+    // Mobile Navigation Functions
+    const mobileNav = document.getElementById('mobileNav');
+    const navOverlay = document.getElementById('navOverlay');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+    function openMobileNav() {
+        mobileNav.classList.add('open');
+        navOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileNav() {
+        mobileNav.classList.remove('open');
+        navOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    mobileMenuBtn?.addEventListener('click', openMobileNav);
+    closeMenuBtn?.addEventListener('click', closeMobileNav);
+    navOverlay?.addEventListener('click', closeMobileNav);
+
+    // Close mobile nav when clicking a link
+    document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+        link.addEventListener('click', closeMobileNav);
     });
 
-    // Scroll to order section
+    document.getElementById('reviewOrderBtn')?.addEventListener('click', showModal);
+    document.getElementById('closeModalBtn')?.addEventListener('click', () => {
+        document.getElementById('orderModal').classList.remove('active');
+    });
+    document.getElementById('cancelOrderBtn')?.addEventListener('click', () => {
+        document.getElementById('orderModal').classList.remove('active');
+    });
+    document.getElementById('confirmOrderBtn')?.addEventListener('click', submitOrderToFirebase);
+    
+    window.addEventListener('click', (e) => {
+        const modal = document.getElementById('orderModal');
+        if(e.target === modal) modal.classList.remove('active');
+    });
+
     document.getElementById('heroOrderBtn')?.addEventListener('click', () => {
         document.getElementById('order-now').scrollIntoView({ behavior: 'smooth' });
     });
+    
+    // Smooth scroll for desktop nav links
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', (e) => {
             const hash = link.getAttribute('href');
-            if(hash && hash !== '#') {
+            if(hash && hash !== '#' && !hash.includes('.html')) {
                 e.preventDefault();
                 const target = document.querySelector(hash);
                 if(target) target.scrollIntoView({ behavior: 'smooth' });
