@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Nigerian Delicacies | Afro Bistro - Authentic Nigerian Cuisine</title>
+    <title>Afro Bistro Menu | Authentic Nigerian Cuisine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -33,7 +33,6 @@
             border-radius: 10px;
         }
 
-        /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -56,7 +55,6 @@
             color: #e67e22;
         }
 
-        /* Desktop Navigation */
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -78,7 +76,6 @@
             border-radius: 40px;
         }
 
-        /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -89,7 +86,6 @@
             z-index: 101;
         }
 
-        /* Mobile Navigation Sidebar */
         .mobile-nav {
             position: fixed;
             top: 0;
@@ -152,7 +148,6 @@
             justify-content: center;
         }
 
-        /* Overlay */
         .nav-overlay {
             position: fixed;
             top: 0;
@@ -167,7 +162,6 @@
             display: block;
         }
 
-        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #fff3e8 0%, #ffe6d5 100%);
             padding: 3rem 2rem;
@@ -225,9 +219,36 @@
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
         }
 
-        /* Category Sections */
+        .info-bar {
+            background: #c0392b;
+            color: white;
+            padding: 1rem 2rem;
+            margin: 1rem 2rem;
+            border-radius: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .info-item i {
+            font-size: 1.2rem;
+        }
+        .plantain-note {
+            background: #e67e22;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+        }
+
         .category {
-            padding: 3rem 2rem;
+            padding: 2rem 2rem;
         }
         .category-title {
             font-size: 2rem;
@@ -243,14 +264,12 @@
             gap: 2rem;
         }
 
-        /* Dish Card */
         .dish-card {
             background: white;
             border-radius: 1.5rem;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            cursor: pointer;
         }
         .dish-card:hover {
             transform: translateY(-8px);
@@ -301,6 +320,11 @@
             font-size: 1.3rem;
             font-weight: 700;
             color: #e67e22;
+            margin-bottom: 0.5rem;
+        }
+        .price-note {
+            font-size: 0.7rem;
+            color: #b9a69a;
             margin-bottom: 1rem;
         }
         .eating-guide {
@@ -336,8 +360,26 @@
             background: #e67e22;
             color: white;
         }
+        .add-to-cart {
+            margin-top: 0.5rem;
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .add-to-cart:hover {
+            background: #c0392b;
+        }
 
-        /* Modal for Video */
         .video-modal {
             display: none;
             position: fixed;
@@ -407,7 +449,138 @@
             }
         }
 
-        /* Order Cart Sidebar */
+        /* Order Modal */
+        .order-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .order-modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 2rem;
+            padding: 2rem;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0e5de;
+        }
+        .modal-header h3 {
+            color: #c0392b;
+            font-size: 1.5rem;
+        }
+        .close-modal-btn {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #999;
+            transition: 0.2s;
+        }
+        .close-modal-btn:hover {
+            color: #c0392b;
+        }
+        .modal-body {
+            margin-bottom: 1.5rem;
+        }
+        .order-summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0e5de;
+        }
+        .modal-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            text-align: right;
+            color: #e67e22;
+        }
+        .order-form-fields {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #f0e5de;
+        }
+        .order-form-fields input,
+        .order-form-fields textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ffd9c4;
+            border-radius: 1rem;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 1rem;
+            background: #fefaf7;
+        }
+        .order-form-fields label {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            display: block;
+            color: #3e2e22;
+            font-size: 0.9rem;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .modal-actions button {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 2rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .confirm-order {
+            background: #2c7a47;
+            color: white;
+        }
+        .confirm-order:hover {
+            background: #1f5c36;
+        }
+        .confirm-order:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .cancel-order {
+            background: #e74c3c;
+            color: white;
+        }
+        .cancel-order:hover {
+            background: #c0392b;
+        }
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid white;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.6s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         .cart-sidebar {
             position: fixed;
             right: 0;
@@ -499,7 +672,6 @@
             margin-top: 2rem;
         }
 
-        /* Responsive Styles */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -535,6 +707,11 @@
             .cart-sidebar {
                 width: 100%;
             }
+            .info-bar {
+                margin: 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
         @media (min-width: 769px) {
@@ -549,7 +726,6 @@
 </head>
 <body>
 
-<!-- Desktop Navigation -->
 <nav class="navbar">
     <div class="logo">Afro <span>Bistro</span></div>
     <div class="nav-links">
@@ -563,7 +739,6 @@
     </button>
 </nav>
 
-<!-- Mobile Navigation Sidebar -->
 <div class="mobile-nav" id="mobileNav">
     <div class="mobile-nav-header">
         <div class="logo">Afro <span>Bistro</span></div>
@@ -578,7 +753,6 @@
 </div>
 <div class="nav-overlay" id="navOverlay"></div>
 
-<!-- Hero Section -->
 <section id="home">
     <div class="hero">
         <div class="hero-content">
@@ -594,37 +768,50 @@
     </div>
 </section>
 
+<div class="info-bar">
+    <div class="info-item"><i class="fas fa-box"></i> Tray (25-30 people) - Call for pricing</div>
+    <div class="info-item"><i class="fas fa-plate-wheat"></i> Plate serves 1-2 people</div>
+    <div class="info-item plantain-note"><i class="fas fa-plus-circle"></i> Side of Plantain: +$5</div>
+    <div class="info-item"><i class="fas fa-utensils"></i> Two wraps with any soup | Extra Swallow: +$2</div>
+</div>
+
 <div class="container" id="menu">
-    <!-- Swallows Category -->
     <div class="category">
-        <h2 class="category-title"><i class="fas fa-utensil-spoon"></i> Nigerian Swallows</h2>
+        <h2 class="category-title"><i class="fas fa-rice"></i> Rice & Pasta Dishes</h2>
+        <div class="dishes-grid" id="rice-grid"></div>
+    </div>
+
+    <div class="category">
+        <h2 class="category-title"><i class="fas fa-utensil-spoon"></i> Swallows & Soups</h2>
         <div class="dishes-grid" id="swallows-grid"></div>
     </div>
 
-    <!-- Soups & Stews Category -->
     <div class="category">
-        <h2 class="category-title"><i class="fas fa-mug-hot"></i> Rich Soups & Stews</h2>
-        <div class="dishes-grid" id="soups-grid"></div>
+        <h2 class="category-title"><i class="fas fa-mug-hot"></i> Soup Pot</h2>
+        <div class="dishes-grid" id="souppot-grid"></div>
     </div>
 
-    <!-- Porridges & Rice Category -->
     <div class="category">
-        <h2 class="category-title"><i class="fas fa-rice"></i> Porridges & Rice Dishes</h2>
-        <div class="dishes-grid" id="porridges-grid"></div>
+        <h2 class="category-title"><i class="fas fa-fish"></i> Proteins & Sides</h2>
+        <div class="dishes-grid" id="proteins-grid"></div>
+    </div>
+
+    <div class="category">
+        <h2 class="category-title"><i class="fas fa-tray"></i> Food Tray</h2>
+        <div class="dishes-grid" id="tray-grid"></div>
     </div>
 </div>
 
 <footer id="contact">
-    <p><i class="fas fa-map-marker-alt"></i> 123 Gourmet Street, Lagos, Nigeria</p>
-    <p><i class="fas fa-phone"></i> Call us: +234 801 234 5678 | <i class="far fa-clock"></i> Mon-Sun: 10am - 10pm</p>
+    <p><i class="fas fa-map-marker-alt"></i> 123 Gourmet Street, U.S.A.</p>
+    <p><i class="fas fa-phone"></i> Call us: +1 (502) 689 815 | <i class="far fa-clock"></i> Mon-Sun: 10am - 10pm</p>
     <p style="margin-top: 1rem;">&copy; 2025 Afro Bistro — Taste of Nigeria</p>
 </footer>
 
-<!-- Cart Sidebar -->
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
         <h3><i class="fas fa-shopping-cart"></i> Your Order</h3>
-        <button class="close-modal" id="closeCartBtn" style="background:none; border:none; color:white; font-size:1.5rem;">&times;</button>
+        <button class="close-modal" id="closeCartBtn">&times;</button>
     </div>
     <div class="cart-items" id="cartItems"></div>
     <div class="cart-total" id="cartTotal">Total: $0.00</div>
@@ -635,221 +822,154 @@
     <span class="cart-count" id="cartCount">0</span>
 </button>
 
-<!-- Video Modal -->
+<div id="orderModal" class="order-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-check-circle"></i> Complete Your Order</h3>
+            <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+        </div>
+        <div class="modal-body" id="modalOrderSummary"></div>
+        <div class="order-form-fields">
+            <label><i class="fas fa-user"></i> Full Name *</label>
+            <input type="text" id="modal-customer-name" placeholder="John Doe" required>
+            <label><i class="fas fa-phone-alt"></i> Phone Number *</label>
+            <input type="tel" id="modal-phone" placeholder="+1 234 567 8900" required>
+            <label><i class="fas fa-comment-dots"></i> Special Instructions</label>
+            <textarea id="modal-instructions" rows="2" placeholder="Any allergies, extra sauce, delivery notes..."></textarea>
+        </div>
+        <div class="modal-actions">
+            <button class="cancel-order" id="cancelOrderBtn">Cancel</button>
+            <button class="confirm-order" id="confirmOrderBtn">Place Order</button>
+        </div>
+    </div>
+</div>
+
 <div id="videoModal" class="video-modal">
     <div class="modal-content">
         <div class="modal-header">
             <h3 id="modalTitle">How to Eat</h3>
-            <button class="close-modal" id="closeModalBtn">&times;</button>
+            <button class="close-modal" id="closeVideoBtn">&times;</button>
         </div>
-        <div class="video-container" id="videoContainer">
+        <div class="video-container">
             <iframe id="videoFrame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="eating-instruction" id="eatingInstruction"></div>
     </div>
 </div>
 
-<script>
-    // Nigerian Food Data with Video Links
+<script type="importmap">
+    {
+        "imports": {
+            "firebase/app": "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js",
+            "firebase/firestore": "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js"
+        }
+    }
+</script>
+
+<script type="module">
+    import { initializeApp } from "firebase/app";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDIa3Gnf9MVDsWtqvb2ruzplWifyXRnif0",
+        authDomain: "afri-bistro.firebaseapp.com",
+        projectId: "afri-bistro",
+        storageBucket: "afri-bistro.firebasestorage.app",
+        messagingSenderId: "54813556679",
+        appId: "1:54813556679:web:0585f4d73d34da265ba3e2",
+        measurementId: "G-9PM4WENVHF"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
     const menuData = {
+        rice: [
+            { id: "jollof_rice", name: "Jollof Rice", description: "Our signature party Jollof rice cooked with authentic Nigerian spices.", price: 15.00, image: "https://i.pinimg.com/736x/4d/f6/bb/4df6bb70aebe14663b806c31e0b57d8d.jpg", videoUrl: "https://www.youtube.com/embed/0Bp6rKId4Zw", eatingGuide: "Eat with a spoon or fork. Best enjoyed with fried plantains." },
+            { id: "fried_rice", name: "Fried Rice", description: "Colorful Nigerian-style fried rice with mixed vegetables and spices.", price: 15.00, image: "https://i.pinimg.com/736x/37/4b/0b/374b0bb906baee982dd4fbc745ab83f2.jpg", videoUrl: "https://www.youtube.com/embed/ZNq8nJX_3fU", eatingGuide: "Serve with fried chicken or plantain. Use a fork or spoon." },
+            { id: "rice_and_beans", name: "Rice and Beans", description: "Hearty combo of white rice and black-eyed peas in coconut milk.", price: 15.00, image: "https://i.pinimg.com/736x/10/2b/0e/102b0e7588bc2b7cdb4814795a2ecfbf.jpg", videoUrl: "https://www.youtube.com/embed/Yu1q5ZxE3XI", eatingGuide: "Mix the beans and rice together, scoop with spoon." },
+            { id: "spaghetti", name: "Spaghetti", description: "Nigerian-style spaghetti in rich tomato sauce with vegetables.", price: 12.99, image: "https://i.pinimg.com/736x/fb/a5/b6/fba5b6c0599313578d04d931ef8a3545.jpg", videoUrl: "https://www.youtube.com/embed/9HMTZt2T1pA", eatingGuide: "Twirl spaghetti on a fork. Best enjoyed with plantain." }
+        ],
         swallows: [
-            {
-                id: "amala",
-                name: "Amala (Yam Flour)",
-                description: "Smooth, dark swallow made from dried yam flour. Best enjoyed with Ewedu and Gbegiri soups.",
-                price: 8.99,
-                image: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=400",
-                videoUrl: "https://www.youtube.com/embed/SgjVoT_i3F8",
-                eatingGuide: "🇳🇬 How to eat: Tear a small piece of Amala, flatten it with your fingers, scoop up soup, and swallow without chewing."
-            },
-            {
-                id: "fufu",
-                name: "Fufu (Cassava Swallow)",
-                description: "Fermented cassava swallow, soft and elastic. Perfect with Egusi or Ogbono soup.",
-                price: 7.99,
-                image: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=400",
-                videoUrl: "https://www.youtube.com/embed/Cd4L9bWjRCE",
-                eatingGuide: "🇳🇬 How to eat: Pinch a bite-sized portion, dip into soup, and swallow whole. Don't chew the fufu!"
-            },
-            {
-                id: "pounded_yam",
-                name: "Pounded Yam",
-                description: "Smooth, stretchy white swallow made from yam flour. Goes well with Egusi, Vegetable, or Bitterleaf soup.",
-                price: 9.99,
-                image: "https://images.pexels.com/photos/1574244/pexels-photo-1574244.jpeg?auto=compress&cs=tinysrgb&w=400",
-                videoUrl: "https://www.youtube.com/embed/d7k-rQLc9Uo",
-                eatingGuide: "🇳🇬 How to eat: Roll into a small ball, create a dent, fill with soup, and swallow. No chewing needed!"
-            },
-            {
-                id: "eba",
-                name: "Eba (Garri Swallow)",
-                description: "Firm, grainy swallow made from cassava flakes (garri). Pairs perfectly with Okra or Afang soup.",
-                price: 6.99,
-                image: "https://images.pexels.com/photos/1474718/pexels-photo-1474718.jpeg?auto=compress&cs=tinysrgb&w=400",
-                videoUrl: "https://www.youtube.com/embed/hQ3YjRm8uR0",
-                eatingGuide: "🇳🇬 How to eat: Mold with your fingers, use as a scoop for soup, and swallow. The grainy texture helps grip soup."
-            }
+            { id: "amala_ewedu", name: "Amala & Ewedu", description: "Smooth yam flour swallow paired with savory jute leaves soup.", price: 15.99, image: "https://i.pinimg.com/736x/de/74/53/de74535a7cc29df0a1d9d7ef6045e864.jpg", videoUrl: "https://www.youtube.com/embed/SgjVoT_i3F8", eatingGuide: "Tear a piece of Amala, flatten, scoop up soup, and swallow." },
+            { id: "egusi_pounded_yam", name: "Egusi with Pounded Yam", description: "Rich melon seed soup with assorted meat and pounded yam.", price: 15.99, image: "https://i.pinimg.com/736x/19/40/c6/1940c642fa3d3f35702c0b39ba2210a6.jpg", videoUrl: "https://www.youtube.com/embed/3LGgF7KAPvg", eatingGuide: "Roll into a ball, create a dent, fill with soup, and swallow." },
+            { id: "fufu_ogbono", name: "Fufu & Ogbono Soup", description: "Fermented cassava swallow with thick, draw Ogbono soup.", price: 15.99, image: "https://i.pinimg.com/736x/88/ed/2c/88ed2ca9b4b7f3a30b4678bc367b51c5.jpg", videoUrl: "https://www.youtube.com/embed/aL8qVqn3Q3E", eatingGuide: "Pinch a bite-sized fufu, dip into soup, and swallow whole." }
         ],
-        soups: [
-            {
-                id: "egusi",
-                name: "Egusi Soup (Melon Seed)",
-                description: "Rich, nutty soup made from ground melon seeds with assorted meat, fish, and vegetables.",
-                price: 12.99,
-                image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400",
-                videoUrl: "https://www.youtube.com/embed/3LGgF7KAPvg",
-                eatingGuide: "🇳🇬 How to eat: Use with any swallow. Scoop soup with your swallow, making sure to get chunks of meat and egusi."
-            },
-            {
-                id: "ogbono",
-                name: "Ogbono Soup (Wild Mango)",
-                description: "Thick, draw soup made from ground ogbono seeds, known for its slippery texture.",
-                price: 13.99,
-                image: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=400",
-                videoUrl: "https://www.youtube.com/embed/aL8qVqn3Q3E",
-                eatingGuide: "🇳🇬 How to eat: The draw texture makes it perfect for dipping. Mix with your swallow and enjoy the slippery goodness."
-            },
-            {
-                id: "ewedu",
-                name: "Ewedu Soup (Jute Leaves)",
-                description: "Slippery green soup made from jute leaves, often paired with Amala and Gbegiri.",
-                price: 8.99,
-                image: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=400",
-                videoUrl: "https://www.youtube.com/embed/lG7Jt2mz1Dg",
-                eatingGuide: "🇳🇬 How to eat: Best with Amala. Dip your swallow into the smooth, slippery soup and swallow without chewing."
-            }
+        souppot: [
+            { id: "okra_soup", name: "Okra Soup", description: "Slimy, nutritious okra soup with assorted meat.", price: 12.99, image: "https://i.pinimg.com/736x/64/f7/bc/64f7bc5ed7a5197339b6e36e7ff7c804.jpg", videoUrl: "https://www.youtube.com/embed/aL8qVqn3Q3E", eatingGuide: "Perfect with any swallow. The draw texture helps food slide down." },
+            { id: "vegetable_soup", name: "Vegetable Soup", description: "Rich vegetable soup with ugu leaves, meat, and stockfish.", price: 14.99, image: "https://i.pinimg.com/736x/3e/2b/c1/3e2bc13a7121e8a35c91f918f00daed9.jpg", videoUrl: "https://www.youtube.com/embed/3LGgF7KAPvg", eatingGuide: "Dip your swallow into this hearty soup." },
+            { id: "egusi_soup", name: "Egusi Soup", description: "Classic melon seed soup with assorted meat and spinach.", price: 14.99, image: "https://i.pinimg.com/736x/a9/b1/f1/a9b1f15b2c07712ac2f399a5d8cc4f3b.jpg", videoUrl: "https://www.youtube.com/embed/3LGgF7KAPvg", eatingGuide: "Scoop soup with your swallow, getting chunks of meat and egusi." }
         ],
-        porridges: [
-            {
-                id: "yam_porridge",
-                name: "Yam Porridge (Asaro)",
-                description: "Creamy yam porridge cooked with palm oil, fish, and vegetables. A hearty one-pot meal.",
-                price: 11.99,
-                image: "https://images.pexels.com/photos/1574244/pexels-photo-1574244.jpeg?auto=compress&cs=tinysrgb&w=400",
-                videoUrl: "https://www.youtube.com/embed/Xqf7zX3MKLI",
-                eatingGuide: "🇳🇬 How to eat: Eat with a spoon. Mix the yam chunks with the sauce and enjoy. Some people eat it with fried fish."
-            },
-            {
-                id: "beans_porridge",
-                name: "Beans Porridge (Ewa Oloyin)",
-                description: "Rich, savory honey beans porridge with palm oil, plantain, and spices.",
-                price: 9.99,
-                image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400",
-                videoUrl: "https://www.youtube.com/embed/vJ03Pc0lMFI",
-                eatingGuide: "🇳🇬 How to eat: Serve with bread or plantain. Use a spoon to scoop the creamy beans. Some eat with garri on the side."
-            },
-            {
-                id: "jollof_rice",
-                name: "Nigerian Jollof Rice",
-                description: "Iconic spicy rice dish cooked in tomato sauce, onions, and assorted spices. Party favorite!",
-                price: 10.99,
-                image: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=400",
-                videoUrl: "https://www.youtube.com/embed/0Bp6rKId4Zw",
-                eatingGuide: "🇳🇬 How to eat: Eat with a spoon or fork. Best enjoyed with fried plantains (dodo), chicken, or coleslaw."
-            },
-            {
-                id: "fried_rice",
-                name: "Nigerian Fried Rice",
-                description: "Colorful rice stir-fried with vegetables, liver, and spices. Perfect for celebrations.",
-                price: 11.99,
-                image: "https://images.pexels.com/photos/1474718/pexels-photo-1474718.jpeg?auto=compress&cs=tinysrgb&w=400",
-                videoUrl: "https://www.youtube.com/embed/ZNq8nJX_3fU",
-                eatingGuide: "🇳🇬 How to eat: Serve with fried chicken, plantain, or moi-moi. Use a fork or spoon."
-            }
+        proteins: [
+            { id: "smoked_fish", name: "Roasted Fish", description: "Whole tilapia smoked with traditional Nigerian spices.", price: 18.99, image: "https://i.pinimg.com/736x/49/7e/67/497e671cb42ac68094cfb1bf7afee1e4.jpg", videoUrl: "https://www.youtube.com/embed/MnRAaK7lA2Q", eatingGuide: "Use fingers to pull off fish meat, dip in pepper sauce." },
+            { id: "suya", name: "Suya", description: "Spicy Hausa-style grilled beef skewers with yaji spice.", price: 12.99, image: "https://i.pinimg.com/736x/d2/ed/1a/d2ed1ac57303f89070998a8704f84cbc.jpg", videoUrl: "https://www.youtube.com/embed/0Bp6rKId4Zw", eatingGuide: "Eat as a side with rice or swallow. Use fingers or fork." },
+            { id: "moimoi", name: "Moimoi", description: "Steamed bean pudding made from peeled black-eyed peas.", price: 6.00, image: "https://i.pinimg.com/736x/6d/a4/51/6da451eff7a08e2067f1ef5a7cb62e96.jpg", videoUrl: "https://www.youtube.com/embed/0Bp6rKId4Zw", eatingGuide: "Eat as a side with rice dishes or swallow." }
+        ],
+        tray: [
+            { id: "tray_jollof", name: "Jollof Rice Tray", description: "Large tray of party Jollof rice - serves 25-30 people.", price: 120.00, image: "https://i.pinimg.com/736x/a7/86/96/a78696d8a914e7b6ebc45d17e6a73a07.jpg", videoUrl: "https://www.youtube.com/embed/0Bp6rKId4Zw", eatingGuide: "Serve buffet-style with fried plantains and salad." },
+            { id: "tray_fried_rice", name: "Fried Rice Tray", description: "Large tray of Nigerian fried rice - serves 25-30 people.", price: 130.00, image: "https://i.pinimg.com/736x/7e/3c/36/7e3c36ab051a35554876759f4bd92f6a.jpg", videoUrl: "https://www.youtube.com/embed/ZNq8nJX_3fU", eatingGuide: "Serve alongside fried chicken and coleslaw." },
+            { id: "tray_goat_meat", name: "Goat Meat Tray", description: "Large tray of spicy peppered goat meat - serves 25-30.", price: 140.00, image: "https://i.pinimg.com/736x/47/8d/21/478d21c7e2442373e6ec7eac8016037c.jpg", videoUrl: "https://www.youtube.com/embed/0Bp6rKId4Zw", eatingGuide: "Best served as a main protein with any rice dish." }
         ]
     };
 
     let cart = [];
     let currentVideoModal = null;
 
-    function createDishCard(dish, category) {
+    function createDishCard(dish) {
         const card = document.createElement('div');
         card.className = 'dish-card';
         card.innerHTML = `
             <div class="dish-image">
                 <img src="${dish.image}" alt="${dish.name}" loading="lazy">
-                <div class="video-badge">
-                    <i class="fas fa-play"></i> Watch how to eat
-                </div>
+                <div class="video-badge"><i class="fas fa-play"></i> Watch how to eat</div>
             </div>
             <div class="dish-info">
                 <h3>${dish.name}</h3>
                 <p class="dish-desc">${dish.description}</p>
-                <div class="price">₦${(dish.price * 600).toLocaleString()} | $${dish.price}</div>
-                <div class="eating-guide">
-                    <p><i class="fas fa-lightbulb"></i> <strong>Eating Guide:</strong> ${dish.eatingGuide}</p>
-                </div>
-                <button class="watch-video" data-video="${dish.videoUrl}" data-name="${dish.name}" data-guide="${dish.eatingGuide}">
-                    <i class="fas fa-play-circle"></i> Watch Tutorial
-                </button>
-                <button class="add-to-cart" data-id="${dish.id}" data-name="${dish.name}" data-price="${dish.price}" style="margin-top: 0.5rem; background: #e67e22; color: white; border: none; padding: 0.5rem 1rem; border-radius: 2rem; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                    <i class="fas fa-shopping-cart"></i> Add to Order
-                </button>
+                <div class="price">$${dish.price.toFixed(2)}</div>
+                ${dish.id.startsWith('tray_') ? '<div class="price-note">* Large tray - Serves 25-30 people</div>' : ''}
+                <div class="eating-guide"><p><i class="fas fa-lightbulb"></i> <strong>Eating Guide:</strong> ${dish.eatingGuide}</p></div>
+                <button class="watch-video" data-video="${dish.videoUrl}" data-name="${dish.name}" data-guide="${dish.eatingGuide}"><i class="fas fa-play-circle"></i> Watch Tutorial</button>
+                <button class="add-to-cart" data-id="${dish.id}" data-name="${dish.name}" data-price="${dish.price}"><i class="fas fa-shopping-cart"></i> Add to Order</button>
             </div>
         `;
         
-        const videoBtn = card.querySelector('.watch-video');
-        videoBtn.addEventListener('click', () => {
-            const videoUrl = videoBtn.dataset.video;
-            const name = videoBtn.dataset.name;
-            const guide = videoBtn.dataset.guide;
-            openVideoModal(videoUrl, name, guide);
+        card.querySelector('.watch-video').addEventListener('click', () => {
+            openVideoModal(dish.videoUrl, dish.name, dish.eatingGuide);
         });
-        
-        const addBtn = card.querySelector('.add-to-cart');
-        addBtn.addEventListener('click', () => {
-            addToCart({
-                id: dish.id,
-                name: dish.name,
-                price: dish.price
-            });
+        card.querySelector('.add-to-cart').addEventListener('click', () => {
+            addToCart({ id: dish.id, name: dish.name, price: dish.price });
         });
-        
         return card;
     }
 
     function renderMenu() {
-        const swallowsGrid = document.getElementById('swallows-grid');
-        const soupsGrid = document.getElementById('soups-grid');
-        const porridgesGrid = document.getElementById('porridges-grid');
+        document.getElementById('rice-grid').innerHTML = '';
+        document.getElementById('swallows-grid').innerHTML = '';
+        document.getElementById('souppot-grid').innerHTML = '';
+        document.getElementById('proteins-grid').innerHTML = '';
+        document.getElementById('tray-grid').innerHTML = '';
         
-        menuData.swallows.forEach(dish => {
-            swallowsGrid.appendChild(createDishCard(dish, 'swallow'));
-        });
-        menuData.soups.forEach(dish => {
-            soupsGrid.appendChild(createDishCard(dish, 'soup'));
-        });
-        menuData.porridges.forEach(dish => {
-            porridgesGrid.appendChild(createDishCard(dish, 'porridge'));
-        });
+        menuData.rice.forEach(dish => document.getElementById('rice-grid').appendChild(createDishCard(dish)));
+        menuData.swallows.forEach(dish => document.getElementById('swallows-grid').appendChild(createDishCard(dish)));
+        menuData.souppot.forEach(dish => document.getElementById('souppot-grid').appendChild(createDishCard(dish)));
+        menuData.proteins.forEach(dish => document.getElementById('proteins-grid').appendChild(createDishCard(dish)));
+        menuData.tray.forEach(dish => document.getElementById('tray-grid').appendChild(createDishCard(dish)));
     }
 
     function openVideoModal(videoUrl, name, guide) {
         const modal = document.getElementById('videoModal');
         const videoFrame = document.getElementById('videoFrame');
-        const modalTitle = document.getElementById('modalTitle');
-        const eatingInstruction = document.getElementById('eatingInstruction');
-        
-        let embedUrl = videoUrl;
-        if (videoUrl.includes('youtube.com/watch?v=')) {
-            const videoId = videoUrl.split('v=')[1].split('&')[0];
-            embedUrl = `https://www.youtube.com/embed/${videoId}`;
-        } else if (videoUrl.includes('youtu.be/')) {
-            const videoId = videoUrl.split('youtu.be/')[1].split('?')[0];
-            embedUrl = `https://www.youtube.com/embed/${videoId}`;
-        }
-        
-        videoFrame.src = embedUrl;
-        modalTitle.textContent = `How to Eat: ${name}`;
-        eatingInstruction.innerHTML = `<i class="fas fa-utensils"></i> ${guide}`;
+        document.getElementById('modalTitle').textContent = `How to Eat: ${name}`;
+        document.getElementById('eatingInstruction').innerHTML = `<i class="fas fa-utensils"></i> ${guide}`;
+        videoFrame.src = videoUrl;
         modal.classList.add('active');
         currentVideoModal = modal;
     }
 
     function closeVideoModal() {
         if (currentVideoModal) {
-            const videoFrame = document.getElementById('videoFrame');
-            videoFrame.src = '';
+            document.getElementById('videoFrame').src = '';
             currentVideoModal.classList.remove('active');
             currentVideoModal = null;
         }
@@ -857,11 +977,8 @@
 
     function addToCart(item) {
         const existing = cart.find(c => c.id === item.id);
-        if (existing) {
-            existing.quantity++;
-        } else {
-            cart.push({ ...item, quantity: 1 });
-        }
+        if (existing) existing.quantity++;
+        else cart.push({ ...item, quantity: 1 });
         updateCartUI();
         showToast(`${item.name} added to cart!`);
     }
@@ -884,14 +1001,9 @@
             total += itemTotal;
             return `
                 <div class="cart-item">
-                    <div>
-                        <strong>${item.name}</strong><br>
-                        <small>$${item.price} x ${item.quantity}</small>
-                    </div>
-                    <div>
-                        <span style="font-weight: bold;">$${itemTotal.toFixed(2)}</span>
-                        <button class="remove-item" data-id="${item.id}" style="background: #e74c3c; border: none; color: white; padding: 0.2rem 0.5rem; border-radius: 50%; margin-left: 0.5rem; cursor: pointer;">&times;</button>
-                    </div>
+                    <div><strong>${item.name}</strong><br><small>$${item.price.toFixed(2)} x ${item.quantity}</small></div>
+                    <div><span style="font-weight: bold;">$${itemTotal.toFixed(2)}</span>
+                    <button class="remove-item" data-id="${item.id}" style="background: #e74c3c; border: none; color: white; padding: 0.2rem 0.5rem; border-radius: 50%; margin-left: 0.5rem; cursor: pointer;">&times;</button></div>
                 </div>
             `;
         }).join('');
@@ -901,8 +1013,7 @@
         
         document.querySelectorAll('.remove-item').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const id = btn.getAttribute('data-id');
-                cart = cart.filter(item => item.id !== id);
+                cart = cart.filter(item => item.id !== btn.getAttribute('data-id'));
                 updateCartUI();
                 showToast('Item removed from cart');
             });
@@ -911,110 +1022,90 @@
 
     function showToast(message) {
         const toast = document.createElement('div');
-        toast.style.cssText = `
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            background: #27ae60;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 50px;
-            z-index: 300;
-            animation: fadeIn 0.3s ease;
-            font-size: 0.85rem;
-        `;
+        toast.style.cssText = 'position:fixed; bottom:100px; right:20px; background:#27ae60; color:white; padding:12px 20px; border-radius:50px; z-index:300; font-size:0.85rem;';
         toast.innerHTML = `✓ ${message}`;
         document.body.appendChild(toast);
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            setTimeout(() => toast.remove(), 300);
-        }, 2000);
+        setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2000);
     }
 
-    // Mobile Navigation Functions
-    const mobileNav = document.getElementById('mobileNav');
-    const navOverlay = document.getElementById('navOverlay');
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const closeMenuBtn = document.getElementById('closeMenuBtn');
-
-    function openMobileNav() {
-        mobileNav.classList.add('open');
-        navOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+    function showOrderModal() {
+        if (cart.length === 0) { showToast('Your cart is empty!'); return; }
+        
+        const total = cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
+        document.getElementById('modalOrderSummary').innerHTML = `
+            ${cart.map(item => `<div class="order-summary-item"><span>${item.name} x${item.quantity}</span><span>$${(item.price * item.quantity).toFixed(2)}</span></div>`).join('')}
+            <div class="modal-total"><strong>Total: $${total.toFixed(2)}</strong></div>
+        `;
+        document.getElementById('modal-customer-name').value = '';
+        document.getElementById('modal-phone').value = '';
+        document.getElementById('modal-instructions').value = '';
+        document.getElementById('orderModal').classList.add('active');
     }
 
-    function closeMobileNav() {
-        mobileNav.classList.remove('open');
-        navOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    mobileMenuBtn?.addEventListener('click', openMobileNav);
-    closeMenuBtn?.addEventListener('click', closeMobileNav);
-    navOverlay?.addEventListener('click', closeMobileNav);
-
-    // Cart sidebar toggle
-    const cartSidebar = document.getElementById('cartSidebar');
-    const cartToggleBtn = document.getElementById('cartToggleBtn');
-    const closeCartBtn = document.getElementById('closeCartBtn');
-    const viewCartBtn = document.getElementById('viewCartBtn');
-    const mobileViewCartBtn = document.getElementById('mobileViewCartBtn');
-    
-    function openCart() {
-        cartSidebar.classList.add('open');
-        closeMobileNav();
-    }
-    
-    function closeCart() {
-        cartSidebar.classList.remove('open');
-    }
-    
-    cartToggleBtn.addEventListener('click', openCart);
-    closeCartBtn.addEventListener('click', closeCart);
-    viewCartBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        openCart();
-    });
-    mobileViewCartBtn?.addEventListener('click', (e) => {
-        e.preventDefault();
-        openCart();
-    });
-    
-    // Checkout
-    document.getElementById('checkoutBtn').addEventListener('click', () => {
-        if (cart.length === 0) {
-            showToast('Your cart is empty. Add some dishes first!');
-            return;
+    async function submitOrderToFirebase() {
+        const customerName = document.getElementById('modal-customer-name').value.trim();
+        const phone = document.getElementById('modal-phone').value.trim();
+        const instructions = document.getElementById('modal-instructions').value;
+        
+        if (!customerName) { showToast('Please enter your name'); return; }
+        if (!phone) { showToast('Please enter your phone number'); return; }
+        
+        const total = cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
+        const orderData = {
+            customerName: customerName,
+            phone: phone,
+            specialInstructions: instructions || '',
+            items: cart.map(item => ({ id: item.id, name: item.name, quantity: item.quantity, price: item.price, subtotal: item.price * item.quantity })),
+            totalAmount: total,
+            status: 'pending',
+            orderDate: serverTimestamp(),
+            timestamp: new Date().toISOString()
+        };
+        
+        const confirmBtn = document.getElementById('confirmOrderBtn');
+        const originalText = confirmBtn.innerHTML;
+        confirmBtn.innerHTML = '<span class="loading-spinner"></span> Placing Order...';
+        confirmBtn.disabled = true;
+        
+        try {
+            const docRef = await addDoc(collection(db, "orders"), orderData);
+            showToast(`✅ Order placed! Order #${docRef.id.slice(-6)}`);
+            cart = [];
+            updateCartUI();
+            document.getElementById('orderModal').classList.remove('active');
+            document.getElementById('cartSidebar').classList.remove('open');
+        } catch (error) {
+            console.error("Error:", error);
+            showToast('❌ Failed to place order. Try again.');
+        } finally {
+            confirmBtn.innerHTML = originalText;
+            confirmBtn.disabled = false;
         }
-        alert('Order placed successfully! We will contact you shortly for delivery.\n\nItems:\n' + cart.map(i => `${i.name} x${i.quantity} - $${(i.price * i.quantity).toFixed(2)}`).join('\n'));
-        cart = [];
-        updateCartUI();
-        closeCart();
-    });
+    }
+
+    // Event Listeners
+    document.getElementById('closeVideoBtn').addEventListener('click', closeVideoModal);
+    window.addEventListener('click', (e) => { if (e.target === document.getElementById('videoModal')) closeVideoModal(); });
+    document.getElementById('closeModalBtn').addEventListener('click', () => document.getElementById('orderModal').classList.remove('active'));
+    document.getElementById('cancelOrderBtn').addEventListener('click', () => document.getElementById('orderModal').classList.remove('active'));
+    document.getElementById('confirmOrderBtn').addEventListener('click', submitOrderToFirebase);
+    document.getElementById('checkoutBtn').addEventListener('click', showOrderModal);
     
-    // Modal close
-    document.getElementById('closeModalBtn').addEventListener('click', closeVideoModal);
-    window.addEventListener('click', (e) => {
-        const modal = document.getElementById('videoModal');
-        if (e.target === modal) closeVideoModal();
-    });
+    // Cart sidebar
+    const cartSidebar = document.getElementById('cartSidebar');
+    document.getElementById('cartToggleBtn').addEventListener('click', () => cartSidebar.classList.add('open'));
+    document.getElementById('closeCartBtn').addEventListener('click', () => cartSidebar.classList.remove('open'));
+    document.getElementById('viewCartBtn').addEventListener('click', (e) => { e.preventDefault(); cartSidebar.classList.add('open'); });
+    document.getElementById('mobileViewCartBtn').addEventListener('click', (e) => { e.preventDefault(); cartSidebar.classList.add('open'); });
     
-    // Hero explore button
-    document.getElementById('heroExploreBtn')?.addEventListener('click', () => {
-        document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
-    });
+    // Mobile nav
+    const mobileNav = document.getElementById('mobileNav');
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => { mobileNav.classList.add('open'); document.getElementById('navOverlay').classList.add('active'); document.body.style.overflow = 'hidden'; });
+    document.getElementById('closeMenuBtn').addEventListener('click', () => { mobileNav.classList.remove('open'); document.getElementById('navOverlay').classList.remove('active'); document.body.style.overflow = ''; });
+    document.getElementById('navOverlay').addEventListener('click', () => { mobileNav.classList.remove('open'); document.getElementById('navOverlay').classList.remove('active'); document.body.style.overflow = ''; });
+    document.querySelectorAll('.mobile-nav-links a').forEach(link => { link.addEventListener('click', () => { mobileNav.classList.remove('open'); document.getElementById('navOverlay').classList.remove('active'); document.body.style.overflow = ''; }); });
     
-    // Close mobile nav when clicking a link
-    document.querySelectorAll('.mobile-nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (link.getAttribute('href') === '#menu') {
-                setTimeout(() => {
-                    document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
-                }, 300);
-            }
-            closeMobileNav();
-        });
-    });
+    document.getElementById('heroExploreBtn').addEventListener('click', () => document.getElementById('menu').scrollIntoView({ behavior: 'smooth' }));
     
     renderMenu();
     updateCartUI();

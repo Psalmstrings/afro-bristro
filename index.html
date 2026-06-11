@@ -333,6 +333,32 @@
             transform: scale(0.98);
         }
 
+        /* Explore More Button */
+        .explore-more-container {
+            text-align: center;
+            margin: 2rem 0 3rem;
+        }
+        .explore-menu-btn {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .explore-menu-btn:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
         .order-section {
             background: #fff8f2;
             border-radius: 2rem;
@@ -533,34 +559,6 @@
             background: #c0392b;
         }
 
-        .menu-loader {
-            text-align: center;
-            padding: 3rem;
-            color: #e67e22;
-        }
-        .loader-spinner {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f0e5de;
-            border-radius: 50%;
-            border-top-color: #e67e22;
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid white;
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 0.6s linear infinite;
-        }
-
         /* Responsive Styles */
         @media (max-width: 768px) {
             .nav-links {
@@ -613,10 +611,10 @@
     <div class="logo">Afro <span>Bistro</span></div>
     <div class="nav-links">
         <a href="#home" class="active">Home</a>
-        <a href="./menu.html">Menu</a>
+        <a href="./pages/menu.html">Menu</a>
         <a href="#order-now">Order Online</a>
         <a href="#contact">Contact</a>
-        <a href="#order-now" class="order-cta"><i class="fas fa-shopping-bag"></i> Order Now</a>
+        <a href="./pages/menu.html" class="order-cta"><i class="fas fa-shopping-bag"></i> Order Now</a>
     </div>
     <button class="mobile-menu-btn" id="mobileMenuBtn">
         <i class="fas fa-bars"></i>
@@ -631,10 +629,10 @@
     </div>
     <div class="mobile-nav-links">
         <a href="#home"><i class="fas fa-home"></i> Home</a>
-        <a href="./menu.html"><i class="fas fa-utensils"></i> Menu</a>
+        <a href="./pages/menu.html"><i class="fas fa-utensils"></i> Menu</a>
         <a href="#order-now"><i class="fas fa-shopping-cart"></i> Order Online</a>
         <a href="#contact"><i class="fas fa-phone"></i> Contact</a>
-        <a href="#order-now" class="mobile-order-cta"><i class="fas fa-shopping-bag"></i> Order Now</a>
+        <a href="./pages/menu.html" class="mobile-order-cta"><i class="fas fa-shopping-bag"></i> Order Now</a>
     </div>
 </div>
 <div class="nav-overlay" id="navOverlay"></div>
@@ -661,10 +659,15 @@
             <p>Handpicked recipes, bold taste — made just for you</p>
         </div>
         <div id="menu-container" class="menu-grid">
-            <div class="menu-loader">
-                <div class="loader-spinner"></div>
-                <p>Loading delicious menu...</p>
-            </div>
+            <!-- Menu items will be dynamically injected here -->
+        </div>
+        
+        <!-- Explore More Button -->
+        <div class="explore-more-container">
+            <a href="./pages/menu.html" class="explore-menu-btn">
+                <i class="fas fa-utensils"></i> Explore Our Full Menu
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
     </div>
 
@@ -700,8 +703,8 @@
 
 <footer id="contact">
     <p><i class="fas fa-map-marker-alt"></i> 123 Gourmet Street, Foodie District</p>
-    <p><i class="fas fa-phone"></i> Call us: (555) 123-4567 | <i class="far fa-clock"></i> Mon-Sun: 11am - 10pm</p>
-    <p style="margin-top: 1rem;">&copy; 2025 Afro Bistro — Taste the tradition</p>
+    <p><i class="fas fa-phone"></i> Call us: +1 (502) 689 815 | <i class="far fa-clock"></i> Mon-Sun: 11am - 10pm</p>
+    <p style="margin-top: 1rem;">&copy; 2025 Afro Bistro — Taste of Nigeria</p>
 </footer>
 
 <div id="toastMessage" class="toast-msg">✓ Added to order</div>
@@ -736,7 +739,7 @@
 
 <script type="module">
     import { initializeApp } from "firebase/app";
-    import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "firebase/firestore";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
     import { getAnalytics } from "firebase/analytics";
 
     const firebaseConfig = {
@@ -753,13 +756,57 @@
     const db = getFirestore(app);
     const analytics = getAnalytics(app);
 
+    // Static Menu Data Only - No Firebase menu loading
     const staticMenuData = [
-        { id: "static_m1", name: "Truffle Mushroom Risotto", description: "Creamy arborio rice, wild mushrooms, parmesan & truffle oil", price: 18.99, image: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { id: "static_m2", name: "Grilled Herb Salmon", description: "Atlantic salmon, lemon herb butter, roasted asparagus", price: 24.50, image: "https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { id: "static_m3", name: "Spicy Peri-Peri Chicken", description: "Grilled chicken, peri-peri glaze, side of chimichurri", price: 16.90, image: "https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { id: "static_m4", name: "Classic Margherita Pizza", description: "San Marzano tomatoes, mozzarella, fresh basil, EVOO", price: 14.75, image: "https://images.pexels.com/photos/803290/pexels-photo-803290.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { id: "static_m5", name: "Mediterranean Bowl", description: "Quinoa, falafel, hummus, cucumber, tzatziki", price: 13.25, image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400" },
-        { id: "static_m6", name: "Double Chocolate Lava Cake", description: "Molten dark chocolate center, vanilla ice cream", price: 8.99, image: "https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?auto=compress&cs=tinysrgb&w=400" }
+        { 
+            id: "static_m1", 
+            name: "Jollof Rice", 
+            description: "Iconic Nigerian spicy rice cooked in rich tomato sauce, onions, and assorted spices. Served with plantain and chicken.", 
+            price: 15.00, 
+            image: "https://i.pinimg.com/736x/4d/f6/bb/4df6bb70aebe14663b806c31e0b57d8d.jpg" 
+        },
+        { 
+            id: "static_m2", 
+            name: "Fried Rice", 
+            description: "Colorful rice stir-fried with mixed vegetables, liver, shrimp, and spices. A celebration favorite!", 
+            price: 15.00, 
+            image: "https://i.pinimg.com/736x/37/4b/0b/374b0bb906baee982dd4fbc745ab83f2.jpg" 
+        },
+        { 
+            id: "static_m3", 
+            name: "Rice and Beans", 
+            description: "Classic combo of white rice and black-eyed peas cooked in coconut milk, served with fried plantain and tomato stew.", 
+            price: 15.00, 
+            image: "https://i.pinimg.com/736x/10/2b/0e/102b0e7588bc2b7cdb4814795a2ecfbf.jpg" 
+        },
+        { 
+            id: "static_m4", 
+            name: "Amala & Ewedu", 
+            description: "Smooth yam flour swallow (Amala) paired with savory jute leaves soup (Ewedu) and assorted meat. A traditional Yoruba delicacy.", 
+            price: 15.99, 
+            image: "https://i.pinimg.com/736x/de/74/53/de74535a7cc29df0a1d9d7ef6045e864.jpg" 
+        },
+        { 
+            id: "static_m5", 
+            name: "Roasted Fish", 
+            description: "Whole tilapia or catfish smoked to perfection with traditional spices. Served with side of spicy pepper sauce.", 
+            price: 60.00, 
+            image: "https://i.pinimg.com/736x/49/7e/67/497e671cb42ac68094cfb1bf7afee1e4.jpg" 
+        },
+        { 
+            id: "static_m6", 
+            name: "Egusi Soup with Pounded Yam", 
+            description: "Rich melon seed soup with assorted meat and fish, served with smooth pounded yam swallow.", 
+            price: 15.99, 
+            image: "https://i.pinimg.com/736x/19/40/c6/1940c642fa3d3f35702c0b39ba2210a6.jpg" 
+        },
+        { 
+            id: "static_m7", 
+            name: "Fufu & Ogbono Soup", 
+            description: "Fermented cassava swallow (Fufu) paired with thick, draw Ogbono soup made from wild mango seeds.", 
+            price: 15.99, 
+            image: "https://i.pinimg.com/736x/88/ed/2c/88ed2ca9b4b7f3a30b4678bc367b51c5.jpg" 
+        },
     ];
 
     let currentCart = [];
@@ -862,11 +909,11 @@
         card.className = 'menu-card';
         card.innerHTML = `
             <div class="card-img">
-                <img src="${item.image || 'https://via.placeholder.com/400x220?text=Delicious+Dish'}" alt="${escapeHtml(item.name)}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x220?text=Food+Image'">
+                <img src="${item.image}" alt="${escapeHtml(item.name)}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x220?text=Food+Image'">
             </div>
             <div class="card-info">
                 <h3>${escapeHtml(item.name)}</h3>
-                <p class="desc">${escapeHtml(item.description) || 'A delicious specialty from our kitchen'}</p>
+                <p class="desc">${escapeHtml(item.description)}</p>
                 <div class="price-order">
                     <span class="price">$${item.price.toFixed(2)}</span>
                     <button class="order-btn" data-id="${itemId}" data-name="${escapeHtml(item.name)}" data-price="${item.price}"><i class="fas fa-shopping-bag"></i> Order Now</button>
@@ -881,34 +928,9 @@
         return card;
     }
 
-    async function loadFirebaseMenu() {
-        try {
-            const querySnapshot = await getDocs(collection(db, "menu"));
-            const items = [];
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
-                items.push({
-                    id: doc.id,
-                    name: data.name || "Untitled Dish",
-                    description: data.description || "",
-                    price: data.price || 0,
-                    image: data.image || ""
-                });
-            });
-            return items;
-        } catch (error) {
-            console.error("Error loading menu from Firebase:", error);
-            return [];
-        }
-    }
-
-    async function renderMenu() {
+    function renderMenu() {
         const menuContainer = document.getElementById('menu-container');
         if(!menuContainer) return;
-        
-        menuContainer.innerHTML = '<div class="menu-loader"><div class="loader-spinner"></div><p>Loading fresh menu...</p></div>';
-        
-        const firebaseItems = await loadFirebaseMenu();
         
         menuContainer.innerHTML = '';
         
@@ -916,20 +938,6 @@
             const card = createMenuItemElement(item, item.id);
             menuContainer.appendChild(card);
         });
-        
-        if (firebaseItems.length > 0) {
-            firebaseItems.forEach(item => {
-                const card = createMenuItemElement(item, item.id);
-                menuContainer.appendChild(card);
-            });
-        }
-        
-        if (firebaseItems.length === 0) {
-            const infoNote = document.createElement('div');
-            infoNote.style.cssText = 'grid-column: 1/-1; text-align: center; padding: 1rem; color: #b9a69a; font-size: 0.9rem;';
-            infoNote.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> No extra dishes uploaded yet. Check back soon for specials!';
-            menuContainer.appendChild(infoNote);
-        }
     }
 
     function showToast(msg) {
@@ -1074,7 +1082,7 @@
     });
 
     document.getElementById('heroOrderBtn')?.addEventListener('click', () => {
-        document.getElementById('order-now').scrollIntoView({ behavior: 'smooth' });
+        window.location.href = './pages/menu.html';
     });
     
     // Smooth scroll for desktop nav links
